@@ -180,17 +180,6 @@ function onClickFilters(e) {
 			arrRepofilters.push(name.id);
 		}
 	});
-	// if (e.target.checked){
-	// 	arrRepofilters.push(e.target.id);
-	// } else {
-	// 	let ind = arrRepofilters.findIndex(c => c ===e.target.id)
-	// 	if(ind===-1){
-
-	// 	} else {
-	// 		let filt = arrRepofilters[ind];
-	//     arrRepofilters.splice(ind, 1);
-	// 	}
-	// }
 	repoFilter();
 	arrRepofilters = [];
 }
