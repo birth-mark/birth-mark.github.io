@@ -17,7 +17,9 @@ var BOOL_SORTING = function BOOL_SORTING(a, b) {
 	}
 };
 var filters = [];
+var arrRepofilters = [];
 var items = [];
+var fullItems = [];
 
 window.onload = function () {
 	var form = document.getElementById('form');
@@ -39,6 +41,7 @@ window.onload = function () {
 			var a = res.json().then(function (e) {
 				filters = [];
 				items = e;
+				fullItems = e;
 				render();
 			});
 			return res.body;
@@ -53,7 +56,7 @@ function render() {
 	var outTemplate = template.replace("%Name%", items[0].owner.login).replace("%src%", items[0].owner.avatar_url);
 	outTemplate += items.reduce(function (result, repo) {
 		return result + repoTemp.replace("%repo%", repo.name).replace("%desc%", repo.description ? repo.description : "").replace("%fork%", repo.fork ? "fork" : "no").replace("%stars%", repo.stargazers_count > 0 ? '<i class="fa fa-star"></i>' + repo.stargazers_count : "").replace("%dateUpdated%", repo.updated_at).replace("%lng%", repo.language ? repo.language : "");
-	}, '<article><table id="repos"> <thead> <tr> <th id="repoN" column="name">Repo name <i class="fa fa-sort"></i></th> <th column="description">description<i class="fa fa-sort"></i></th> <th column="fork">fork<i class="fa fa-sort"></i></th>' + ' <th column="stargazers_count">stars count<i class="fa fa-sort"></i></th> <th column="updated_at">updated date<i class="fa fa-sort"></i></th> <th column="language">language<i class="fa fa-sort"></i></th> </tr> </thead> <tbody>');
+	}, '<article><table id="repos"> <thead> <tr> <th column="name">Repo name <i class="fa fa-sort"></i></th> <th column="description">description<i class="fa fa-sort"></i></th> <th column="fork">fork<i class="fa fa-sort"></i></th>' + ' <th column="stargazers_count">stars count<i class="fa fa-sort"></i></th> <th column="updated_at">updated date<i class="fa fa-sort"></i></th> <th column="language">language<i class="fa fa-sort"></i></th> </tr> </thead> <tbody>');
 	outTemplate += "</tbody></table></article>";
 	document.getElementById('respones').innerHTML = outTemplate;
 	var repos = document.getElementById('repos');
@@ -70,6 +73,8 @@ function render() {
 			document.querySelector("th[column=" + elem[0] + "]").children[0].classList.add('fa-sort-asc');
 		}
 	});
+	var repoFilters = document.getElementById('filters');
+	repoFilters.addEventListener('click', onClickFilters);
 }
 
 function rend(error) {
@@ -119,6 +124,33 @@ function resort() {
 	});
 	render();
 }
+function repoFilter() {
+	var repos = fullItems;
+	arrRepofilters.forEach(function (e) {
+		switch (e) {
+			case 'fork':
+				return repos = repos.filter(function (item) {
+					return item.fork;
+				});
+			case 'issues':
+				return repos.filter(function (item) {
+					return item.open_issues_count > 0;
+				});
+			case 'topics':
+				return repos;
+			case 'soursces':
+				return repos;
+			default:
+				return repos;
+		}
+	});
+	items = repos;
+	render();
+}
+function check(name) {
+	item.name;
+}
+
 function toggleFilter(filter) {
 	filter[1] = filter[1] === 'acs' ? 'desc' : 'acs';
 	return filter;
@@ -140,4 +172,25 @@ function onClick(e) {
 		filters.unshift(toggleFilter(filter));
 	}
 	resort();
+}
+
+function onClickFilters(e) {
+	e.target.parentElement.querySelectorAll('input').forEach(function (name) {
+		if (name.checked) {
+			arrRepofilters.push(name.id);
+		}
+	});
+	// if (e.target.checked){
+	// 	arrRepofilters.push(e.target.id);
+	// } else {
+	// 	let ind = arrRepofilters.findIndex(c => c ===e.target.id)
+	// 	if(ind===-1){
+
+	// 	} else {
+	// 		let filt = arrRepofilters[ind];
+	//     arrRepofilters.splice(ind, 1);
+	// 	}
+	// }
+	repoFilter();
+	arrRepofilters = [];
 }

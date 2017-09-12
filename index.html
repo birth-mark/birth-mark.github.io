@@ -1,4 +1,18 @@
-<!DOCTYPE html> <html> <head> <title>GitHub Repo</title> <link href="/css/main.css" rel="stylesheet" type="text/css"> <script src="/routers/index.js" type="text/javascript" async></script> </head> <body> <form id="form"> <input id="clientName"> <button id="btn">Submit</button> </form> <div id="respones"></div> <script id="error" type="text/template"> <h1>%Error%</h1> </script> <script id="tamplate" type="text/template"> <h1>%Name%</h1><img src="%src%">
-      <ul>Repo
-        <li>%repo%<span>%description%</span></li>
-      </ul> </script> </body> </html>
+<!DOCTYPE html> <html> <head> <title>GitHub Repo</title> <link href="/css/main.css" rel="stylesheet" type="text/css"> <link rel="fluid-icon" href="https://github.com/fluidicon.png"> <script src="/index.js" type="text/javascript" async></script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> </head> <body> <form id="form"> <h3>GitHub user:</h3> <input id="clientName"> <button id="btn">Submit</button> </form> <form class="filer" id="filters"> <h3>Filters:</h3> <input id="issues" type="checkbox"> <label for="issues">has open issues</label> <input id="topics" type="checkbox"> <label for="topics">has topics</label> <legend>repo type</legend> <input id="all" type="radio" checked="checked" name="typeRepo"> <label for="all">all</label> <input id="fork" type="radio" name="typeRepo"> <label for="fork">fork</label> <input id="sources" type="radio" name="typeRepo"> <label for="sources">sources</label> </form> <div id="respones"></div> <script id="error" type="text/template"> <h1>%Error%</h1> </script> <script id="tamplate" type="text/template"> <aside><img src="%src%">
+        <h1>%Name%</h1>
+      </aside> </script> <script id="head" type="text/template"> <thead>
+        <tr>
+          <th column="name">Repo name<i class="f fa-sort"></i></th>
+          <th column="description">Description<i class="f fa-sort"></i></th>
+          <th column="fork">fork<i class="f fa-sort"></i></th>
+          <th column="stargazers_count">stars count<i class="f fa-sort"></i></th>
+          <th column="updated_at">updated date<i class="f fa-sort"></i></th>
+        </tr>
+      </thead> </script> <script id="repo" type="text/template"> <tr>
+        <td>%repo%</td>
+        <td>%desc%</td>
+        <td>%fork%</td>
+        <td>%stars%</td>
+        <td>%dateUpdated%</td>
+        <td>%lng%</td>
+      </tr> </script> </body> </html>
