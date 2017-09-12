@@ -1,0 +1,70 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css';
+body{
+	font-family: sans-serif;
+}
+#respones{
+	margin-top: auto;
+	margin-bottom: auto;
+	h1 {
+		text-align: center;
+		color: grey;
+		opacity: 0.5;
+	}
+}
+.filer{
+	width:69%;
+	display: inline-block;
+	vertical-align:top;
+	text-align: left;
+}
+form{
+	text-align: center;
+
+	display: inline-block;
+	width: 30%;
+	margin-bottom: 20px;
+}
+aside{
+	text-align: center;
+
+	display: inline-block;
+	width: 30%;
+	img {
+		width: 150px;
+		height: auto;
+	}
+}
+article{
+  display: inline-block;
+  width: 69%;
+  vertical-align: top;
+}
+fieldset{
+	width:auto;
+
+}
+table{
+	border-radius: 4px;
+	color: #687c75;
+	border-collapse: collapse;
+	border: #8d9f9f 1px solid;
+
+		tr{
+			border: #8d9f9f 1px solid;
+		}
+		th,td {
+			max-width: 220px;
+			text-overflow: ellipsis;
+    	padding: 0.5rem 1rem;
+    }
+}
+.fa{
+	margin-left: 6px;
+}
+legend{
+	margin: 5px;
+}
+label{
+	margin: 5px;
+	margin-right: 10px;
+}

@@ -1,0 +1,58 @@
+doctype html
+html
+	head
+		title GitHub Repo
+		link(href='/css/main.css' rel='stylesheet' type='text/css')
+		link(rel="fluid-icon" href="https://github.com/fluidicon.png")
+		script(src='/index.js' type='text/javascript' async)
+		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
+	body
+		form#form
+			h3 GitHub user:
+			input#clientName
+			button#btn Submit
+		form#filters.filer
+			h3 Filters:
+			input#issues(type='checkbox')
+			label(for='issues') has open issues
+			input#topics(type='checkbox')
+			label(for='topics') has topics
+
+			legend repo type
+			input#all(type='radio' checked name="typeRepo")
+			label(for="all") all
+			input#fork(type='radio'  name="typeRepo")
+			label(for="fork") fork
+			input#sources(type='radio'  name="typeRepo")
+			label(for="sources") sources
+
+		div#respones
+
+
+		script#error(type="text/template")
+			h1 %Error%
+		script#tamplate(type="text/template")
+			aside
+				img(src = '%src%')
+				h1 %Name%
+		script#head(type="text/template")
+			thead
+				tr
+					th(column='name') Repo name
+						i.f.fa-sort
+					th(column='description') Description
+						i.f.fa-sort
+					th(column='fork') fork
+						i.f.fa-sort
+					th(column='stargazers_count') stars count
+						i.f.fa-sort
+					th(column='updated_at') updated date
+						i.f.fa-sort
+		script#repo(type="text/template")
+						tr
+							td %repo%
+							td %desc%
+							td %fork%
+							td %stars%
+							td %dateUpdated%
+							td %lng%
